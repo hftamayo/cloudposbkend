@@ -16,7 +16,7 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 
 public class ProductTest {
-    private static final String PRODUCT_API_ROOT = "http://localhost:8081/api/products";
+    private static final String PRODUCT_API_ROOT = "http://localhost:8080/api/products";
 
     private Product createRandomProduct(){
         Product product = new Product();
