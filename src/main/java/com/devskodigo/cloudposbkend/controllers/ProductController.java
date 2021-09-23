@@ -17,6 +17,7 @@ public class ProductController {
         return productDao.getProduct(id);
     }
 
+    @CrossOrigin(origins="*")
     @RequestMapping(value = "api/products",method = RequestMethod.GET)
     public List<Product> getProducts(){
         return productDao.getProducts();
