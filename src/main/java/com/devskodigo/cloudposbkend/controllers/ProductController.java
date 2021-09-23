@@ -3,10 +3,7 @@ package com.devskodigo.cloudposbkend.controllers;
 import com.devskodigo.cloudposbkend.dao.ProductDao;
 import com.devskodigo.cloudposbkend.models.Product;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,17 +23,17 @@ public class ProductController {
     }
 
     @RequestMapping(value = "api/products",method = RequestMethod.POST)
-    public void createProduct(){
-
+    public void createProduct(@RequestBody Product product){
+        productDao.createProduct(product);
     }
 
     @RequestMapping(value = "api/products/{id}",method = RequestMethod.DELETE)
-    public void deleteProduct(){
-
+    public void deleteProduct(@PathVariable int id){
+        productDao.deleteProduct(id);
     }
 
     @RequestMapping(value = "api/products",method = RequestMethod.PUT)
-    public void updateProduct(){
+    public void updateProduct(@RequestBody Product product){
 
     }
 }

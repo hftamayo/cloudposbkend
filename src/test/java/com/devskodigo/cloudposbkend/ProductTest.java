@@ -1,7 +1,6 @@
 package com.devskodigo.cloudposbkend;
 
-import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
-import static org.apache.commons.lang3.RandomStringUtils.randomNumeric;
+import static org.apache.commons.lang3.RandomStringUtils.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -21,8 +20,8 @@ public class ProductTest {
 
     private Product createRandomProduct(){
         Product product = new Product();
-        product.setName(randomAlphabetic(25));
-        product.setPrice(randomNumeric(15)); //verificar estas funciones
+        product.setName(randomAlphabetic(200));
+        product.setPrice(Double.parseDouble(randomNumeric(20)));
         return product;
     }
 
@@ -81,7 +80,7 @@ public class ProductTest {
     public void whenUpdateCreatedProduct_thenUpdated(){
         Product product = createRandomProduct();
         String location = createProductasUri(product);
-        product.setId(Long.parseLong(location.split("api/products")[1]));
+        product.setId( Integer.parseInt(location.split("api/products")[1]));
         product.setName("newName");
         Response response = RestAssured.given()
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
@@ -100,6 +99,6 @@ public class ProductTest {
 
         assertEquals(HttpStatus.OK.value(), response.getStatusCode());
         response = RestAssured.get(location);
-        assetEquals(HttpStatus.NOT_FOUND.value(), response.getStatusCode());
+        assertEquals(HttpStatus.NOT_FOUND.value(), response.getStatusCode());
     }
 }

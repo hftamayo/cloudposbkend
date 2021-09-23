@@ -17,24 +17,29 @@ public class ProductDaoImp implements ProductDao {
 
     @Override
     public List<Product> getProducts() {
-        String query ="FROM Products";
+        String query ="FROM Product";
         return  entityManager.createQuery(query).getResultList();
     }
 
     @Override
     public Product getProduct(int id) {
-        String query = String.format("FROM Products P WHERE P.id = %d", id);
+        String query = String.format("FROM Product P WHERE P.id = %d", id);
         return (Product) entityManager.createQuery(query).getSingleResult();
     }
 
     @Override
     public void updateProduct(Product product) {
-
+        entityManager.merge(product);
     }
 
     @Override
     public void deleteProduct(int id) {
-
+        Product product = entityManager.find(Product.class, id);
+        entityManager.remove(product);
     }
 
+    @Override
+    public void createProduct(Product product){
+        entityManager.merge(product);
+    }
 }
