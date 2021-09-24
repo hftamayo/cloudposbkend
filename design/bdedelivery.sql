@@ -17,10 +17,13 @@ USE `delivery` ;
 -- -----------------------------------------------------
 -- Table `delivery`.`order`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `delivery`.`order` (
+CREATE TABLE IF NOT EXISTS `delivery`.`orders` (
   `id_order` INT(11) NOT NULL AUTO_INCREMENT,
-  `fecha` VARCHAR(45) NULL DEFAULT NULL,
-  `estado` VARCHAR(45) NULL DEFAULT NULL,
+  `ordersDate` VARCHAR(45) NULL DEFAULT NULL,
+  `ordersStatus` VARCHAR(45) NULL DEFAULT NULL,
+  `ordersDeliveryAddress` VARCHAR(80) NOT NULL,      
+  `id_payment` INT NOT NULL,
+  `id_user` INT NOT NULL,
   PRIMARY KEY (`id_order`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
@@ -36,6 +39,7 @@ CREATE TABLE IF NOT EXISTS `delivery`.`payment_type` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
+INSERT INTO payment_type(payment_type) VALUES('CASH'), ('CREDIT CARD'), ('CRYPTO');
 
 -- -----------------------------------------------------
 -- Table `delivery`.`roles`
@@ -86,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `delivery`.`invoice` (
   INDEX `fk_Invoice_User1_idx` (`id_user` ASC),
   CONSTRAINT `fk_Invoice_Order1`
     FOREIGN KEY (`id_order`)
-    REFERENCES `delivery`.`order` (`id_order`)
+    REFERENCES `delivery`.`orders` (`id_order`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Invoice_Payment_Type1`
@@ -114,6 +118,8 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 
+INSERT INTO product_type(type) VALUES('MEXICAN FOOD'), ('ITALIAN FOOD'), ('ALCOHOLIC BEVERAGES');
+
 -- -----------------------------------------------------
 -- Table `delivery`.`product`
 -- -----------------------------------------------------
@@ -132,7 +138,7 @@ CREATE TABLE IF NOT EXISTS `delivery`.`product` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
-
+INSERT INTO product(name, price, id_product_type) VALUES('Burrito Medium',5.99,1), ('Alfredo Pasta',8.99,2), ('Italian Soda',2.99,3);
 -- -----------------------------------------------------
 -- Table `delivery`.`order_product`
 -- -----------------------------------------------------
@@ -144,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `delivery`.`order_product` (
   INDEX `fk_Order_has_Product_Order1_idx` (`id_order` ASC),
   CONSTRAINT `fk_Order_has_Product_Order1`
     FOREIGN KEY (`id_order`)
-    REFERENCES `delivery`.`order` (`id_order`)
+    REFERENCES `delivery`.`orders` (`id_order`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Order_has_Product_Product1`
