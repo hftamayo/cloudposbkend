@@ -8,16 +8,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins="*")
 public class ProductController {
     @Autowired
     ProductDao productDao;
 
-    @RequestMapping(value = "api/product/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "api/products/{id}",method = RequestMethod.GET)
     public Product getProduct(@PathVariable int id){
         return productDao.getProduct(id);
     }
 
-    @CrossOrigin(origins="*")
     @RequestMapping(value = "api/products",method = RequestMethod.GET)
     public List<Product> getProducts(){
         return productDao.getProducts();
@@ -35,6 +35,5 @@ public class ProductController {
 
     @RequestMapping(value = "api/products",method = RequestMethod.PUT)
     public void updateProduct(@RequestBody Product product){
-
     }
 }
