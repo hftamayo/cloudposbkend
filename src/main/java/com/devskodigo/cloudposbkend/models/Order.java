@@ -2,7 +2,7 @@ package com.devskodigo.cloudposbkend.models;
 
 import javax.persistence.*;
 
-@Table(name = "`order`")
+@Table(name = "order")
 @Entity
 public class Order {
     @Id

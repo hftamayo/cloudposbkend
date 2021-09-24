@@ -29,12 +29,18 @@ public class OrderDaoImp implements OrderDao {
 
     @Override
     public void updateOrder(Order order) {
-
+        entityManager.merge(order);
     }
 
     @Override
     public void deleteOrder(int id) {
+        Order order = entityManager.find(Order.class,id);
+        entityManager.remove(order);
+    }
 
+    @Override
+    public void createOrder(Order order) {
+    entityManager.merge(order);
     }
 
 }

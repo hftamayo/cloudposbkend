@@ -3,10 +3,7 @@ package com.devskodigo.cloudposbkend.controllers;
 import com.devskodigo.cloudposbkend.dao.OrderDao;
 import com.devskodigo.cloudposbkend.models.Order;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,17 +23,13 @@ public class OrderController {
     }
 
     @RequestMapping(value = "api/orders",method = RequestMethod.POST)
-    public void createOrder(){
-
-    }
+    public void createOrder(@RequestBody Order order){orderDao.createOrder(order);}
 
     @RequestMapping(value = "api/orders/{id}",method = RequestMethod.DELETE)
-    public void deleteOrder(){
-
-    }
+    public void deleteOrder(@PathVariable int id){orderDao.deleteOrder(id);}
 
     @RequestMapping(value = "api/orders",method = RequestMethod.PUT)
-    public void updateOrder(){
+    public void updateOrder(@RequestBody Order order){
 
     }
 }

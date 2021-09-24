@@ -6,15 +6,15 @@ import javax.persistence.Table;
 
 @Table(name = "order_product")
 @Entity
-public class OrderProduct {
+public class OrderProduct{
     @EmbeddedId
-    private OrderProductId id;
+    private OrderProduct id;
 
-    public OrderProductId getId() {
+    public OrderProduct getId() {
         return id;
     }
 
-    public void setId(OrderProductId id) {
+    public void setId(OrderProduct id) {
         this.id = id;
     }
 }
