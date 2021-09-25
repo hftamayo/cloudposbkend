@@ -21,12 +21,12 @@ CREATE TABLE IF NOT EXISTS `delivery`.`orders` (
   `id_order` INT(11) NOT NULL AUTO_INCREMENT,
   `orders_date` VARCHAR(45) NULL DEFAULT NULL,
   `orders_status` VARCHAR(45) NULL DEFAULT NULL,
-  `orders_delivaddress` VARCHAR(80) NOT NULL,
-  `id_product` INT NOT NULL,
-  `product_quantity` INT NOT NULL,
-  `product_price` FLOAT NOT NULL,       
-  `id_payment` INT NOT NULL,
-  `id_user` INT NOT NULL,
+  `orders_delivaddress` VARCHAR(80) NULL DEFAULT NULL,
+  `id_product` INT NULL DEFAULT NULL,
+  `product_quantity` INT NULL DEFAULT NULL,
+  `product_price` FLOAT NULL DEFAULT NULL,       
+  `id_payment` INT NULL DEFAULT NULL,
+  `id_user` INT NULL DEFAULT NULL,
   PRIMARY KEY (`id_order`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
