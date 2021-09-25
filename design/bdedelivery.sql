@@ -19,15 +19,18 @@ USE `delivery` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `delivery`.`orders` (
   `id_order` INT(11) NOT NULL AUTO_INCREMENT,
-  `ordersDate` VARCHAR(45) NULL DEFAULT NULL,
-  `ordersStatus` VARCHAR(45) NULL DEFAULT NULL,
-  `ordersDeliveryAddress` VARCHAR(80) NOT NULL,      
+  `orders_date` VARCHAR(45) NULL DEFAULT NULL,
+  `orders_status` VARCHAR(45) NULL DEFAULT NULL,
+  `orders_delivaddress` VARCHAR(80) NOT NULL,
+  `id_product` INT NOT NULL,
+  `product_quantity` INT NOT NULL,
+  `product_price` FLOAT NOT NULL,       
   `id_payment` INT NOT NULL,
   `id_user` INT NOT NULL,
   PRIMARY KEY (`id_order`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
-
+INSERT INTO orders(orders_date, orders_status, orders_delivaddress, id_product, product_quantity, product_price, id_payment, id_user) VALUES('24/09/2021', 'ON KITCHEN', 'LA CAMPANERA, SOYAPANGO',1, 2,5.99,3,1), ('23/09/2021', 'ON KITCHEN', 'COMUNIDAD 22 DE ABRIL',2, 2,8.99,2,1);
 
 -- -----------------------------------------------------
 -- Table `delivery`.`payment_type`
@@ -57,8 +60,8 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `delivery`.`user` (
   `id_user` INT(11) NOT NULL AUTO_INCREMENT,
-  `first name` VARCHAR(45) NULL DEFAULT NULL,
-  `last name` VARCHAR(45) NULL DEFAULT NULL,
+  `first_name` VARCHAR(45) NULL DEFAULT NULL,
+  `last_name` VARCHAR(45) NULL DEFAULT NULL,
   `email` VARCHAR(45) NULL DEFAULT NULL,
   `password` VARCHAR(45) NULL DEFAULT NULL,
   `direccion` TEXT NULL DEFAULT NULL,

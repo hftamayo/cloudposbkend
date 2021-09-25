@@ -2,7 +2,7 @@ package com.devskodigo.cloudposbkend.models;
 
 import javax.persistence.*;
 
-@Table(name = "`order`")
+@Table(name = "`orders`")
 @Entity
 public class Order {
     @Id
@@ -10,13 +10,13 @@ public class Order {
     @Column(name = "id_order", nullable = false)
     private Integer id;
 
-    @Column(name = "orderDate", length = 45)
-    private String orderDate;
+    @Column(name = "orders_date", length = 45)
+    private String ordersDate;
 
-    @Column(name = "orderStatus", length = 45)
-    private String orderStatus;
+    @Column(name = "orders_status", length = 45)
+    private String ordersStatus;
 
-    @Column(name = "ordersDeliveryAddress", length = 80)
+    @Column(name = "orders_delivaddress", length = 80)
     private String ordersDeliveryAddress;
 
     @Column(name = "id_payment", nullable = false)
@@ -25,20 +25,20 @@ public class Order {
     @Column(name = "id_user", nullable = false)
     private Integer id_user;
 
-    public String getOrderStatus() {
-        return orderStatus;
+    public String getOrdersStatus() {
+        return ordersStatus;
     }
 
-    public void setOrderStatus(String orderStatus) {
-        this.orderStatus = orderStatus;
+    public void setOrdersStatus(String ordersStatus) {
+        this.ordersStatus = ordersStatus;
     }
 
-    public String getOrderDate() {
-        return orderDate;
+    public String getOrdersDate() {
+        return ordersDate;
     }
 
-    public void setOrderDate(String orderDate) {
-        this.orderDate = orderDate;
+    public void setOrdersDate(String ordersDate) {
+        this.ordersDate = ordersDate;
     }
 
     public Integer getId() {
